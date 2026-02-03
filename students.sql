@@ -11,3 +11,5 @@ INSERT INTO Students VALUES (1, 'A', 22);
 INSERT INTO Students VALUES (2, 'John', 23);
 
 SELECT * FROM Students;
+
+select studentID from Students;
