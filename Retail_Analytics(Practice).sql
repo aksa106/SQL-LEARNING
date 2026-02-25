@@ -154,32 +154,176 @@ having avg(Price) > 2000
 ------------------------------------------------------------------------------------------------------------------------
 
 
+-- ROUND 2 — Data Retrieval + Filtering + Sorting + Aggregation
+
+-- Answer carefully.
+
+-- Q1
+
+-- Show top 2 cheapest products.
+
+select top 2 * from Products
+order by price 
+
+
+-- Q2
+
+-- Show customers whose email contains the letter 'a'.
+
+select * from customers 
+where email like '%a%'
+
+-- Q3
+
+-- Show total number of orders that are either 'Pending' or 'Shipped'.
+
+select count(*) AS [Total ORders]
+from Orders
+where Orderstatus in ('Pending','Shipped')
+
+
+-- (Return just one number.)
+
+-- Q4
+
+-- Show average order amount for each OrderStatus.
+select avg(TotalAmount) [AVG]
+, OrderStatus 
+from Orders
+Group by OrderStatus
+
+
+-- Q5
+
+-- Show categories where total stock (sum of StockQty) is greater than 30.
+
+
+select sum(StockQty) [Sum of StockQty],
+Category
+from Products
+group by Category
+having sum(StockQty) > 30
+
+
+-------------------------------------------------------------------------------------------------------------
+-- ROUND 3 — Slightly Harder
+-- Q1
+
+-- Show the second most expensive product. (Not TOP 2.)
+
+select * from products
+order by price DESC
+
+-- Q2
+
+-- Show number of customers whose first name starts with a vowel.
+
+select * from customers 
+where FirstName like '[aeiou]%'
+
+-- Q3
+
+-- Show total revenue for each month. (Based on OrderDate.)
+
+select * from Orders
+select * from OrderDetails 
+
+-- Q4
+
+-- Show the highest order amount per customer.
+
+select * from Orders
+
+
+-- Q5
+
+-- Show categories where average price is lower than overall average price of all products.
+
+
+
+
+------------------------------------
+
+
+
+-- QUESTION 1
+
+-- From Products table:
+
+-- Show the top 2 categories (by total stock)
+-- where:
+
+-- Category name starts with a letter between A and M
+
+-- Only include categories where average price is greater than 1500
+
+-- Sort by total stock descending
+
+-- Return:
+
+-- Category
+
+-- TotalStock
+
+-- AveragePrice
+
+select * from products
+select top 2
+Category,
+sum(StockQty) [Total stock],
+avg(Price) [Average Price]
+from products
+
+where Category like '[A-M]%' 
+
+
+group by Category, Price
+
+having avg(Price) > 1500
+
+order by [Total stock] desc
 
 
 
 
 
 
+--------------------------------------------------------------------------------------------
+-- QUESTION 2
+
+-- Show number of customers
+-- whose email ends with 'gmail.com'
+-- and only show result if count > 1
+-- sorted descending.
+
+-- This uses:
+
+-- LIKE
+
+-- COUNT
+
+-- GROUP BY
+
+-- HAVING
+
+-- ORDER BY
+
+-- No new functions.
+-- select * from Customers
 
 
+select 
+Email,
+count(CustomerID) [Total No. of Customers]
+from customers
 
+where email like '%g%'
 
+Group by email 
 
+having count(CustomerID) > 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+order by count(CustomerID) desc
 
 
 

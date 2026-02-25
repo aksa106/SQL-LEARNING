@@ -91,6 +91,88 @@ select * from payments
 
 
 
+-- ADDING FOREIGN KEYS
+
+ALTER TABLE ORDERS
+ADD CONSTRAINT FK_ORDERS_CUSTOMERS
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID)
+
+
+--ORDER DETAILS -> ORDERS
+
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_Orders
+FOREIGN KEY (OrderID)
+REFERENCES Orders(OrderID)
+
+
+--ORDER DETAILS -> PRODUCTS
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_Products
+FOREIGN KEY (ProductID)
+REFERENCES Products(ProductID)
+
+--payments -> orders
+
+ALTER TABLE Payments
+ADD CONSTRAINT FK_Payments_Orders
+FOREIGN KEY (OrderID)
+REFERENCES Orders(OrderID);
+
+
+
+select * from Orders
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
