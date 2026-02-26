@@ -325,6 +325,93 @@ having count(CustomerID) > 1
 
 order by count(CustomerID) desc
 
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+-- From the Products table:
+
+-- Show the top 2 categories
+-- where:
+
+-- ProductName contains the word 'Corset'
+
+-- Only include categories where total stock is greater than 10
+
+-- Return:
+
+-- Category
+
+-- TotalStock
+
+-- AveragePrice
+
+-- Sort by AveragePrice descending
+
+select * from Products
+where productname like '%Corset%'
+
+select 
+
+    top 2
+    Category,
+    sum(StockQty) [Total Stock],
+    avg(price) [AveragePrice]
+    from products 
+    where ProductName like '%Corset%' or ProductName like  '%Accessories%'
+    group by Category
+    having sum(StockQty) > 10
+
+    order by AveragePrice desc
+
+
+
+
+  select Category from Products
+  where productname like '%corset%'
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+select * from products 
+
+select 
+Category,
+sum(StockQty) [TotalStock],
+avg(price) [AveragePrice]
+from products
+
+where Category not like 'A%'
+
+group by Category
+
+having sum(StockQty) > 15 and avg(price) BETWEEN 1000 and 3000
+
+order by totalstock desc
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
